@@ -1,37 +1,12 @@
 package com.example.core.di
 
+import com.example.core.LogProvider
+import com.example.core.LogProviderImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import retrofit2.Retrofit
-import javax.inject.Qualifier
-import javax.inject.Singleton
 
 @Module
-class CoreModule {
-
-    @Provides
-    @Singleton
-    @DogRetrofit
-    fun provideDogRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("dog.ceo/")
-            .build()
-    }
-
-    @Provides
-    @Singleton
-    @IPRetrofit
-    fun provideIPRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("api.ipify.org/")
-            .build()
-    }
+interface CoreModule {
+    @Binds
+    fun bindLogProvider(logProviderImpl: LogProviderImpl): LogProvider
 }
-
-@Qualifier
-@Retention(AnnotationRetention.RUNTIME)
-annotation class DogRetrofit
-
-@Qualifier
-@Retention(AnnotationRetention.RUNTIME)
-annotation class IPRetrofit
