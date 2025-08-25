@@ -3,7 +3,7 @@ package com.example.core.di
 import com.example.core.LogProvider
 import dagger.Component
 
-@Component(modules = [CoreModule::class])
+@Component(modules = [LoggerModule::class])
 interface CoreComponent {
     fun provideLogProvider(): LogProvider
 }

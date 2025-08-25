@@ -2,7 +2,7 @@ package com.example.feature.home
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import com.example.core.di.DaggerCoreComponent
+import com.example.core.CoreComponentProvider
 import com.example.feature.home.di.DaggerHomeComponent
 
 class FeatureActivity : ComponentActivity() {
@@ -10,12 +10,11 @@ class FeatureActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val component = DaggerHomeComponent.factory().create(
-            DaggerCoreComponent.builder().build()
+            (applicationContext as CoreComponentProvider).getCoreComponent()
         )
-
-        val users = UserRepositoryImpl().getUsers()
         val logger = component.provideLogger()
 
+        val users = UserRepositoryImpl().getUsers()
         for (user in users) {
             logger.log(user.name)
         }

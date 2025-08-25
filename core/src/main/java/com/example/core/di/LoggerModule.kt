@@ -6,7 +6,7 @@ import dagger.Binds
 import dagger.Module
 
 @Module
-interface CoreModule {
+interface LoggerModule {
     @Binds
     fun bindLogProvider(logProviderImpl: LogProviderImpl): LogProvider
 }
